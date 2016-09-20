@@ -12,12 +12,24 @@ app.set('port', port);
 // pug configuration
 app.set('view engine', 'pug')
 
-app.listen(port, () => {
-  console.log(`Listening on port: ${port}`)
-})
 
 // routes
 app.use(routes)
+
+// // middlewares
+// app.use(session({
+//   store: new RedisStore(),
+//   secret: 'pizzadescottsupersecretkey'
+// }))
+
+app.use((req, res, next) => {
+  app.locals.email = req.session.email
+  next()
+})
+
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`)
+})
 
 
 
