@@ -13,6 +13,7 @@ router.get('/', (req, res) =>
 router.get('/login', (req, res) =>
   res.render('login')
 )
+
 router.get('/register', (req, res) =>
   res.render('register')
 )
@@ -27,6 +28,38 @@ router.get('/register', (req, res) =>
 //     .catch(console.error);
 // })
 
+// put session back in the destructured req.body at some point when working with redis
+
+router.post('/login', ({body: {email, password}}, res, err) => {
+  User.findOne({email})
+    .then(user => {
+      if (user) {
+        return new Promise((resolve, reject)=> {
+          bcrypt.compare(password, user.password, (err, matches) => {
+            if (err){
+              reject(err)
+            } else {
+              resolve(matches)
+            }
+          })
+        })
+      } else {
+        res.render('login', {msg: 'Email is not found'})
+      }
+    })
+    .then((matches) => {
+      if (matches) {
+        // session.email = email
+        res.redirect('/')
+      } else {
+        res.render('login', {msg:'Password does not match'})
+      }
+    })
+    .catch(err)
+})
+
+
+
 router.post('/register', ({ body: { email, password, confirmation } }, res, err) => {
   if (password === confirmation) {
     User.findOne({ email })
@@ -35,7 +68,7 @@ router.post('/register', ({ body: { email, password, confirmation } }, res, err)
           res.render('register', { msg: 'Email is already registered' })
         } else {
           return new Promise((resolve, reject) => {
-            bcrypt.hash(password, 15, (err, hash) => {
+            bcrypt.hash(password, 10, (err, hash) => {
               if (err) {
                 reject(err)
               } else {
@@ -52,5 +85,7 @@ router.post('/register', ({ body: { email, password, confirmation } }, res, err)
     res.render('register', { msg: 'Password & password confirmation do not match' })
   }
 })
+
+
 
 module.exports = router;
