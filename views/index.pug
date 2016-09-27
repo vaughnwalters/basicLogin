@@ -1,8 +1,10 @@
 doctype html
 html
-  link(rel='stylesheet' href='../public/lib/bootstrap/dist/css/bootstrap.min.css')
+  link(rel='stylesheet' href='./public/lib/bootstrap/dist/css/bootstrap.min.css')
   body
-    h3 Welcome login@email.com
+    //- if user
+    //-   p #{user}
+    //- else
     button
       a(href='/login') Login
     button

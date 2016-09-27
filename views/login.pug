@@ -2,6 +2,8 @@ h1 Login
   if error
     h2= error
 form(method='POST')
+  if msg
+    p #{msg}
   label(for='email') Email Address
   input(
     type='email'
