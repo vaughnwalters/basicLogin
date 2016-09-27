@@ -1,0 +1,21 @@
+{
+  "name": "basicLogin",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Vaughn Walters <vaughnwalters@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/vaughnwalters/basicLogin",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

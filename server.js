@@ -12,6 +12,9 @@ app.set('port', port);
 // pug configuration
 app.set('view engine', 'pug')
 
+app.locals.errors = {} // errors & body added to avoid guard statements
+app.locals.body = {} // i.e. value=(body && body.name) vs. value=body.name
+
 
 // routes
 app.use(routes)
