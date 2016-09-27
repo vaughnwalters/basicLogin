@@ -2,6 +2,9 @@
 
 const { Router } = require('express')
 const router = Router()
+const bcrypt = require('bcrypt')
+const User = require('../models/user')
+
 
 router.get('/', (req, res) =>
   res.render('index')
@@ -13,6 +16,16 @@ router.get('/login', (req, res) =>
 router.get('/register', (req, res) =>
   res.render('register')
 )
+
+// router.post('/register',  ({body: {email, password}}, res, error) => {
+//   User
+//   .create({
+//       email,
+//       password
+//     })
+//     .then(() => res.redirect('/login'))
+//     .catch(console.error);
+// })
 
 router.post('/register', ({ body: { email, password, confirmation } }, res, err) => {
   if (password === confirmation) {
@@ -39,7 +52,5 @@ router.post('/register', ({ body: { email, password, confirmation } }, res, err)
     res.render('register', { msg: 'Password & password confirmation do not match' })
   }
 })
-
-
 
 module.exports = router;

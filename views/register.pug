@@ -2,26 +2,26 @@ h1 Register
 if msg
   h2= msg
 form(method='POST')
-label(for='email') Email Address
-input(
-  type='email'
-  name='email'
-  placeholder='user@login.com'
-  required
-)
-label(for='password') Password
-input(
-  type='password'
-  name='password'
-  placeholder='**********************'
-  required
-)
-label(for='confirmation') Password Confirmation
-input(
-  type='password'
-  name='confirmation'
-  placeholder='**********************'
-  required
-)
-a(href='/') Cancel
-input(type='submit' value='Register')
+  label(for='email') Email Address
+  input(
+    type='email'
+    name='email'
+    placeholder='user@login.com'
+    required
+  )
+  label(for='password') Password
+  input(
+    type='password'
+    name='password'
+    placeholder='**********************'
+    required
+  )
+  label(for='confirmation') Password Confirmation
+  input(
+    type='password'
+    name='confirmation'
+    placeholder='**********************'
+    required
+  )
+  a(href='/') Cancel
+  input(type='submit' value='Register')
