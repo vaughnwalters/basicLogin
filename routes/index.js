@@ -30,7 +30,7 @@ router.get('/register', (req, res) =>
 
 // put session back in the destructured req.body at some point when working with redis
 
-router.post('/login', ({body: {email, password}}, res, err) => {
+router.post('/login', ({session, body: {email, password}}, res, err) => {
   User.findOne({email})
     .then(user => {
       if (user) {
@@ -49,7 +49,7 @@ router.post('/login', ({body: {email, password}}, res, err) => {
     })
     .then((matches) => {
       if (matches) {
-        // session.email = email
+        session.email = email
         res.redirect('/')
       } else {
         res.render('login', {msg:'Password does not match'})
@@ -81,7 +81,7 @@ router.post('/register', ({ body: { email, password, confirmation } }, res, err)
       .then(hash => User.create({ email, password: hash }))
       .then(() => res.redirect('/login'))
       .catch(err)
-  } else {
+  } else { 
     res.render('register', { msg: 'Password & password confirmation do not match' })
   }
 })

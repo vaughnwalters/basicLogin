@@ -2,10 +2,10 @@ doctype html
 html
   link(rel='stylesheet' href='./public/lib/bootstrap/dist/css/bootstrap.min.css')
   body
-    //- if user
-    //-   p #{user}
-    //- else
-    button
-      a(href='/login') Login
-    button
-      a(href='/register') Register
+    if email
+      p #{email}
+    else
+      button
+        a(href='/login') Login
+      button
+        a(href='/register') Register
