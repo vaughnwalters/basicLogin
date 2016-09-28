@@ -3,7 +3,12 @@ html
   link(rel='stylesheet' href='./public/lib/bootstrap/dist/css/bootstrap.min.css')
   body
     if email
-      p #{email}
+      p #{email} is logged in
+      button
+        a(href='/logout') logout
+
+      //- form(method='POST')
+      //-   input(type='submit' value='logout')
     else
       button
         a(href='/login') Login

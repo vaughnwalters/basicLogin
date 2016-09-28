@@ -18,6 +18,8 @@ router.get('/register', (req, res) =>
   res.render('register')
 )
 
+
+
 // router.post('/register',  ({body: {email, password}}, res, error) => {
 //   User
 //   .create({
@@ -28,7 +30,6 @@ router.get('/register', (req, res) =>
 //     .catch(console.error);
 // })
 
-// put session back in the destructured req.body at some point when working with redis
 
 router.post('/login', ({session, body: {email, password}}, res, err) => {
   User.findOne({email})
@@ -58,8 +59,6 @@ router.post('/login', ({session, body: {email, password}}, res, err) => {
     .catch(err)
 })
 
-
-
 router.post('/register', ({ body: { email, password, confirmation } }, res, err) => {
   if (password === confirmation) {
     User.findOne({ email })
@@ -86,6 +85,18 @@ router.post('/register', ({ body: { email, password, confirmation } }, res, err)
   }
 })
 
+// do i have to have a get route and a post route?  if i want to logout on click, 
+// how do i route that?  want to not have a separate pug file for logout.
 
+router.get('/logout', (req,res) => {
+  res.render('logout')
+})
+
+router.post('/logout', (req,res) => {
+  req.session.destroy( err => {
+    if (err) throw err
+    res.redirect('/')
+  })
+})
 
 module.exports = router;
