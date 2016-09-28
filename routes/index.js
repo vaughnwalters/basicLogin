@@ -84,15 +84,10 @@ router.post('/register', ({ body: { email, password, confirmation } }, res, err)
     res.render('register', { msg: 'Password & password confirmation do not match' })
   }
 })
-
-// do i have to have a get route and a post route?  if i want to logout on click, 
-// how do i route that?  want to not have a separate pug file for logout.
-
+// ******
+// LOGOUT
+// ******
 router.get('/logout', (req,res) => {
-  res.render('logout')
-})
-
-router.post('/logout', (req,res) => {
   req.session.destroy( err => {
     if (err) throw err
     res.redirect('/')
