@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 
 const express = require('express');
 const session = require('express-session');
@@ -25,7 +25,7 @@ app.use(session({
 
 app.use((req, res, next) => {
   console.log("req.session", req.session );
-  app.locals.email = req.session.email
+  app.locals.email = req.session && req.session.email
   next()
 })
 app.use(express.static('public'))
